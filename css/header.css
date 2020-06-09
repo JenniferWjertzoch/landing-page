@@ -1,0 +1,131 @@
+header {
+    background-color: #000;
+    height: 100px;
+    position: fixed;
+    width: 100%;
+    z-index: 1;
+}
+
+/* Hide and show header on scroll */
+.main-header {
+    transition: transform 0.4s;
+}
+
+.scroll-down .main-header {
+    transform: translate3d(0, -100%, 0);
+}
+
+.scroll-up .main-header {
+    transform: translate3d(0, 0, 0);
+}
+
+/* Menu */
+.menu {
+    background-color: #000;
+    clear: both;
+    display: none;
+    padding: 10px;
+    z-index: 1;
+}
+
+.menu a {
+    color: rgb(214, 224, 230);
+    display: block;
+    padding: 8px;
+}
+
+.menu a:hover {
+    background-color: #707070;
+    transition: all 0.3s ease 0s;
+}
+
+.menu a.is-active {
+    background-color: #707070;
+}
+
+/* Menu icon */
+.menu-icon {
+    float: right;
+    margin: 10px;
+    padding: 28px 20px;
+}
+
+.menu-icon .nav-icon {
+    background: rgb(214, 224, 230);
+    display: block;
+    height: 2px;
+    position: relative;
+    width: 25px;
+}
+
+.menu-icon .nav-icon:before,
+.menu-icon .nav-icon:after {
+    background: rgb(214, 224, 230);
+    content: '';
+    display: block;
+    height: 100%;
+    position: absolute;
+    transition: all .2s ease-out;
+    width: 100%;
+}
+
+.menu-icon .nav-icon:before {
+    top: 8px;
+}
+
+.menu-icon .nav-icon:after {
+    top: -8px;
+}
+
+.menu-icon span:before {
+    top: -5px;
+  }
+
+  .menu-icon span:after {
+    bottom: -5px;
+  }
+
+  .menu-icon span,
+  .menu-icon span:before,
+  .menu-icon span:after {
+    transition: all 500ms ease-in-out;
+  }
+
+  .menu-icon.active span {
+    background-color: transparent;
+  }
+
+  .menu-icon.active span:before,
+  .menu-icon.active span:after {
+    top: 0;
+  }
+
+  .menu-icon.active span:before {
+    background: rgb(214, 224, 230);
+    transform: rotate(45deg);
+  }
+
+  .menu-icon.active span:after {
+    background: rgb(214, 224, 230);
+    transform: rotate(-45deg);
+  }
+
+@media screen and (min-width: 767px) {
+    header {
+        padding: 1rem 10%;
+        text-align: right;
+    }
+
+    .menu {
+        display: inline-block;
+        margin-top: 10px;
+    }
+
+    .menu a {
+        display: inline;
+    }
+
+    .menu-icon {
+        display: none;
+    }
+}

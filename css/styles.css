@@ -1,0 +1,208 @@
+@import 'header.css';
+@import 'footer.css';
+
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+}
+
+html, body {
+    color: #404040;
+    font: 400 1.125rem/1.6 Fijalla One, sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 70px;
+}
+
+body {
+    margin: 0;
+}
+
+h1,
+h2,
+h3 {
+    margin: 0;
+    padding: 1em 0;
+    text-align: center;
+}
+
+p {
+    margin: 0;
+    padding: 1em 0;
+    text-align: center;
+}
+
+a {
+    text-decoration: none;
+}
+
+section {
+    min-height: 60vh;
+}
+
+.section-is-active {
+    border: 3px solid black;
+}
+
+/* Home section */
+.home {
+    background: #ececec;
+    padding-bottom: 2em;
+}
+
+.home-content {
+    padding: 1.5em;
+}
+
+.home-text p {
+    text-align: unset;
+}
+
+/* Image section */
+.image {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5)), url("/img/liviu-florescu-Ufw3tdWujlY-unsplash.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    color: #d6e0e6;
+    padding-bottom: 3em;
+}
+
+.image-content {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 116px 10px 10px 10px;
+    text-align: center;
+}
+
+.image-content .order-link {
+    background-color: rgba(217,211,199, 0.8);
+    border: 3px solid #d6e0e6;
+    border-radius: 20px;
+    color: #404040;
+    margin-top: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 1em;
+    width: 200px;
+}
+
+.image-content .order-link:hover {
+    background-color: rgba(236,236,236, 0.8);
+    transition: all 0.3s ease 0s;
+}
+
+/* Card styling */
+.gear-cards {
+    background: #3E454C;
+    padding: 2em 0;
+}
+
+.gear-cards p {
+    padding: 0;
+}
+
+.gear-cards ul {
+    margin: 0;
+    padding: 0;
+}
+
+.card {
+    background: #d6e0e6;
+    border-radius: 0.25rem;
+    box-shadow: 0 20px 40px -14px rgba(0,0,0,0.9);
+    display: flex;
+    flex-direction: column;
+    margin: 1.25rem;
+}
+
+.card img {
+    border-top-left-radius: 0.25rem;
+    border-top-right-radius: 0.25rem;
+    filter: contrast(70%);
+    height: 225px;
+    overflow: hidden;
+    width: 100%;
+}
+
+.card-content {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    padding: 1.5rem;
+}
+
+/* More section */
+.more {
+    padding: 2em;
+}
+
+/* Twins section */
+.twin {
+    background: #c8beb0;
+    padding: 2em;
+}
+
+
+.twin:last-of-type {
+    background: #7b6854;
+    color: #d6e0e6;
+}
+
+
+@media screen and (min-width: 767px) {
+    .grid {
+        display: grid;
+        grid-template-columns: 1fr repeat(2, minmax(auto, 25em)) 1fr;
+    }
+
+    /* Image section */
+    .image-content {
+        grid-column: 2/4;
+        margin-top: 45px;
+    }
+
+    .image-content h1 {
+        font-size: 3em;
+    }
+
+    /* Home section */
+    .home-text {
+        columns: 2;
+        column-gap: 2em;
+    }
+
+    .home-text p {
+        padding-top: 0;
+    }
+
+    .home-content,
+    .more-content,
+    .gear-cards-content {
+        grid-column: 2/4;
+    }
+
+    /* Gear-cards section */
+    .gear-cards ul {
+        display: flex;
+        justify-content: space-around;
+    }
+
+    .card {
+        flex-basis: 40%;
+    }
+
+    .card-content {
+        padding: 1.5rem;
+    }
+
+    /* Twin section */
+    .twin {
+        grid-column: span 2;
+    }
+}

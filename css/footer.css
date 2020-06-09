@@ -1,0 +1,133 @@
+footer {
+    background-color: #333;
+    font: bold 0.875rem sans-serif;
+    padding: 3.438rem 3.125rem;
+}
+
+footer a {
+    color: rgba(217,211,199, 0.8);
+}
+
+footer p {
+    color: #d6e0e6;
+    text-align: unset;
+}
+
+.footer-left,
+.footer-center,
+.footer-right {
+    margin-bottom: 2.5rem;
+}
+
+.footer-left {
+    margin-top: 15px;
+}
+
+.footer-left a {
+    margin-right: 10px;
+}
+
+/* Footer links */
+.footer-left a:hover {
+    color: #d6e0e6;
+    transition: all 0.3s ease 0s;
+}
+
+/* Footer center */
+.footer-center-elements {
+    display: flex;
+}
+
+.footer-center-elements a {
+    color: rgba(217,211,199, 0.8);
+}
+
+.footer-center svg {
+    height: auto;
+    margin-right: 20px;
+    width: 30px;
+}
+
+/* Footer right */
+.footer-right {
+    margin-top: 1.563rem;
+}
+
+.footer-right a {
+    display: inline-block;
+    margin-right: 25px;
+    width: 30px;
+}
+
+svg.social-media {
+    background-color:#474747;
+    border-radius: 8px;
+}
+
+svg.social-media:hover {
+    background-color: #707070;
+}
+
+svg.social-media.facebook {
+    padding: 6px 8px;
+}
+
+svg.social-media.github {
+    padding: 8px;
+}
+
+svg.social-media.instagram {
+    padding: 6px 8px;
+}
+
+svg.social-media.twitter {
+    padding: 8px;
+}
+
+/* Back to top button */
+.top-button {
+    background-color: #000;
+    border: none;
+    border-radius: 10px;
+    bottom: 20px;
+    color: white;
+    display: none;
+    font-size: 18px;
+    padding: 15px;
+    position: fixed;
+    right: 30px;
+    z-index: 99;
+}
+
+.top-button:hover {
+    background-color: #555;
+}
+
+@media screen and (min-width: 767px) {
+    footer {
+        font: bold 1rem sans-serif;
+    }
+
+    .footer-left,
+    .footer-center,
+    .footer-right {
+        display: inline-block;
+        vertical-align: top;
+    }
+
+    /* Footer left */
+    .footer-left {
+        width: 40%;
+    }
+
+    /* Footer center */
+    .footer-center {
+        width: 35%;
+    }
+
+    /* Footer right */
+    .footer-right {
+        text-align: end;
+        width: 20%;
+    }
+}
