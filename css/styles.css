@@ -1,3 +1,7 @@
+/* One common notes:
+  + Try to stick to one color value and not mixing color-names, hex-color and rgb(a)-color 🙂
+  + This also is true for space units. Like you need em, px and rem, I would recommend to decide for one unit
+*/
 @import 'header.css';
 @import 'footer.css';
 
@@ -58,7 +62,7 @@ section {
 }
 
 .home-text p {
-    text-align: unset;
+    text-align: unset; /* What does this and why do you need it? */
 }
 
 /* Image section */

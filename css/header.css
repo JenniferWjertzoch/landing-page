@@ -36,7 +36,7 @@ header {
 
 .menu a:hover {
     background-color: #707070;
-    transition: all 0.3s ease 0s;
+    transition: all 0.3s ease 0s; /* Couldn't you leave the '0s'? */
 }
 
 .menu a.is-active {
