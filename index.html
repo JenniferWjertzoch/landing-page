@@ -5,25 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Landing Page</title>
     <link rel="stylesheet" href="css/styles.css">
+    <!-- If you want to use the font family in your style.css it would be more save to load it first -->
     <link href="https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap" rel="stylesheet">
 </head>
 <body>
     <header class="main-header" data-element="main-header">
+        <!-- label is meant to connect to an input field, since you don't have one here, you shouldn't use it -->
+        <!-- A button would much better fit here, since you have a button to toggle the navigation -->
         <label class="menu-icon" data-element="menu-icon"><span class="nav-icon"></span></label>
         <nav class="menu" data-element="menu"></nav>
     </header>
 
     <main class="main-area">
+        <!-- A section with only one element (the div in this case) doesn't really make sense -->
         <section class="section1 image grid" id="section1" data-element="section1">
             <div class="image-content">
+                <!-- A paragraph before a headline looks very much like you used markup to style content, which you shouldn't do -->
+                <!-- One general advice here, if your markup doesn't work without CSS, then you should rethink the structure of it -->
                 <p>Rolls-Royce Corniche</p>
                 <h1>The perfect driving experience</h1>
                 <a href="#" class="order-link">Order Now</a>
             </div>
         </section>
+
+        <!-- A section with only one element (the div in this case) doesn't really make sense -->
         <section class="section2 home grid" id="section2" data-element="section2">
             <div class="home-content">
                 <h2 class="content-title">Rolls-Royce Motor Cars UK</h2>
+                <!-- Wouldn't it have been enough to add this class directly to the p tag, without an additional div tag? -->
                 <div class="home-text">
                     <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr. </p>
                 </div>
@@ -31,6 +40,7 @@
         </section>
 
         <section class="section3 gear-cards grid" id="section3" data-element="section3">
+            <!-- If you would use this class directly on the ul tag you wouldn't need the div tag -->
             <div class="gear-cards-content">
                 <ul>
                     <li class="card">
@@ -58,6 +68,7 @@
             </div>
         </section>
 
+        <!-- A section with only one element (the div in this case) doesn't really make sense -->
         <section class="section4 more grid" id="section4" data-element="section4">
             <div class="more-content">
                 <h2 class="content-title">Rolls-Royce is a british, hand-build car-manufacturer.</h2>
