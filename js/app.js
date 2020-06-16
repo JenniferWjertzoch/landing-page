@@ -2,6 +2,9 @@
 
 const LandingPage = (function() {
 
+    // Would like to discuss notes and hints about this whole file in person
+    // Code styling improved already a lot, but it seems like it's still an issue, I miss a couple of spaces
+
     const dropdownBtn = document.querySelector('[data-element=menu-icon]')
     const menuContent = document.querySelector('[data-element=menu]')
 
