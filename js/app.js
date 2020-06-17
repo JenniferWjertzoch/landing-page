@@ -1,26 +1,56 @@
 'use strict'
 
+
+const config = {
+    cssClasses: {
+        scrollDown: 'scroll-down',
+        scrollUp: 'scroll-up',
+        active: 'active',
+        hidden: 'hidden'
+    },
+    selectors: {
+        mainNav: '',
+        footerNav: ''
+    }
+}
+
+const Helpers = (function () {
+    /**
+     *
+     * @param toggle
+     * @param target
+     */
+    const toggleVisibility = (toggle, target) => {
+        toggle.addEventListener('click', () => {
+            toggle.classList.toggle(config.cssClasses.active)
+            target.classList.toggle(config.cssClasses.hidden)
+        })
+    }
+
+    return {
+        toggleVisibility: (toggle, target) => toggleVisibility(toggle, target)
+    }
+})(config)
+
 const LandingPage = (function() {
 
     // Would like to discuss notes and hints about this whole file in person
     // Code styling improved already a lot, but it seems like it's still an issue, I miss a couple of spaces
 
-    const dropdownBtn = document.querySelector('[data-element=menu-icon]')
-    const menuContent = document.querySelector('[data-element=menu]')
+    // const dropdownBtn = document.querySelector('[data-element=menu-icon]')
+    // const menuContent = document.querySelector('[data-element=menu]')
+
+    const getDOMElement = selector => document.querySelector(selector)
 
     const dropdownMenu = function() {
-        dropdownBtn.addEventListener('click',() => {
-            if(menuContent.style.display===''){
-               menuContent.style.display='block'
-            } else {
-               menuContent.style.display=''
-            }
-            dropdownBtn.classList.toggle('active')
-        })
+        const dropdownBtn = getDOMElement('[data-element=menu-icon]')
+        const menuContent = getDOMElement('[data-element=menu]')
+
+        Helpers.toggleVisibility(dropdownBtn, menuContent)
     }
 
-    const body = document.body
-    const button = document.querySelector('[data-element=top-button]')
+    // const body = document.body
+    // const button = document.querySelector('[data-element=top-button]')
 
     const buttonOnScroll = function() {
         window.onscroll = function() {scrollFunction()}
@@ -33,80 +63,100 @@ const LandingPage = (function() {
         }
     }
 
-    const backToTopButton = function() {
-        button.addEventListener('click',() => {
+    const backToTopButton = function(config) {
+        const toTopButton = getDOMElement('[data-element=top-button]')
+
+        toTopButton.addEventListener('click', () => {
             document.body.scrollTop = 0 // For Safari
             document.documentElement.scrollTop = 0 // For Chrome, Firefox and Opera
             // Bring back the menu
-            body.classList.remove('scroll-down')
-            body.classList.add('scroll-up')
+            document.body.classList.remove(config.cssClasses.scrollDown)
+            document.body.classList.add(config.cssClasses.scrollUp)
         })
     }
 
-    const hideHeaderOnScroll = function() {
-        const scrollUp = 'scroll-up'
-        const scrollDown = 'scroll-down'
-        let lastScroll = 0
+    const hideHeaderOnScroll = function(config) {
+        let lastPageYOffset = 0
 
         window.addEventListener('scroll', () => {
-        const currentScroll = window.pageYOffset
-        if (currentScroll == 0) {
-            body.classList.remove(scrollUp)
-            return
-        }
+            const pageYOffset = window.pageYOffset
 
-        if (currentScroll > lastScroll && !body.classList.contains(scrollDown)) {
-            // Scroll down
-            body.classList.remove(scrollUp)
-            body.classList.add(scrollDown)
-        } else if (currentScroll < lastScroll && body.classList.contains(scrollDown)) {
-            // Scroll up
-            body.classList.remove(scrollDown)
-            body.classList.add(scrollUp)
-        }
-        lastScroll = currentScroll
+            if (pageYOffset == 0) {
+                document.body.classList.remove(config.cssClasses.scrollUp)
+
+                return
+            }
+
+            if (pageYOffset >= lastPageYOffset && !document.body.classList.contains(config.cssClasses.scrollDown)) {
+                // Scroll down
+                document.body.classList.remove(config.cssClasses.scrollUp)
+                document.body.classList.add(config.cssClasses.scrollDown)
+            } else {
+                // Scroll up
+                document.body.classList.remove(config.cssClasses.scrollDown)
+                document.body.classList.add(config.cssClasses.scrollUp)
+            }
+
+            lastPageYOffset = pageYOffset
         })
     }
 
-    const allSections = Array.from(document.querySelectorAll('section'))
-    const headerNav = document.querySelector('nav.menu')
-    const footerNav = document.querySelector('nav.nav-left')
+    // const allSections = Array.from(document.querySelectorAll('section'))
+    // const headerNav = document.querySelector('nav.menu')
+    // const footerNav = document.querySelector('nav.nav-left')
 
-    const createLinkElement = function() {
-        allSections.forEach((section, index) => {
-            const newAnchorTag = document.createElement('a')
-            const addIdSectionElement = `#section${index + 1}`
+    const setLinkAction = function (link) {
+        link.addEventListener('click', event => {
+            event.preventDefault()
+            const hrefValue = link.getAttribute('href')
+            const section = document.querySelector(hrefValue)
 
-            newAnchorTag.setAttribute('href', addIdSectionElement)
-            newAnchorTag.innerHTML = `Section ${index + 1}`
+            history.pushState(null, null, hrefValue)
 
-            headerNav.appendChild(newAnchorTag)
-            const anchorTagClone = newAnchorTag.cloneNode(true)
-            footerNav.appendChild(anchorTagClone)
-
-            newAnchorTag.addEventListener('click', event => {
-                event.preventDefault()
-                const hashVal = newAnchorTag.getAttribute('href')
-                const element = document.querySelector(hashVal)
-
-                history.pushState(null, null, hashVal)
-
-                element.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start',
-                })
+            section.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start',
             })
+        })
 
+        return link
+    }
+
+    const getNavLinks = function() {
+        const allSections = Array.from(document.querySelectorAll('[data-element=section]'))
+
+        // Example: return [navLink, false, navLink]
+        return allSections.map(section => {
+            let navLink = document.createElement('a')
+
+            if (!section.id) return false
+
+            const navLinkHref = `#${section.id}`
+            const navLinkText = section.querySelector('[data-element=content-title]') ? section.querySelector('[data-element=content-title]').innerText : navLinkHref.replace('-', ' ')
+
+            navLink.setAttribute('href', navLinkHref)
+            navLink.innerText = navLinkText
+            navLink = setLinkAction(navLink)
+
+            // headerNav.appendChild(newAnchorTag)
+            // const anchorTagClone = newAnchorTag.cloneNode(true)
+            // footerNav.appendChild(anchorTagClone)
+
+            return navLink
         })
     }
 
-    const activeLinkOnScroll = function() {
-        const mainNavLinks = document.querySelectorAll('nav.menu a')
+    const createNav = function (navElement) {
+        const navLinks = getNavLinks()
 
+        navLinks.forEach(link => navElement.appendChild(link))
+    }
+
+    const activeLinkOnScroll = function(navLinks) {
         window.addEventListener('scroll', () => {
             const fromTop = window.scrollY + 100
 
-            mainNavLinks.forEach(link => {
+            navLinks.forEach(link => {
                 const section = document.querySelector(link.hash)
                 if (
                     section.offsetTop <= fromTop &&
@@ -122,19 +172,22 @@ const LandingPage = (function() {
         })
     }
 
-    const init = function() {
+    const init = function(config) {
+        const navLinks = Array.from(document.querySelectorAll('[data-element=menu] a'))
+
         dropdownMenu()
-        createLinkElement()
-        activeLinkOnScroll()
-        hideHeaderOnScroll()
-        backToTopButton()
+        createNav(getDOMElement('[data-element=menu]'))
+        createNav(getDOMElement('[data-element=footer-nav]'))
+        activeLinkOnScroll(navLinks)
+        hideHeaderOnScroll(config)
+        backToTopButton(config)
         buttonOnScroll()
     }
 
     return {
-        init: init,
+        init: config => init(config)
     }
 
 })()
 
-document.addEventListener('DOMContentLoaded', LandingPage.init)
+document.addEventListener('DOMContentLoaded', () => LandingPage.init(config))

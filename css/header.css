@@ -23,9 +23,14 @@ header {
 .menu {
     background-color: #000;
     clear: both;
-    display: none;
     padding: 10px;
     z-index: 1;
+}
+
+@media screen and (max-width: 767px) {
+  .menu.hidden {
+    display: none;
+  }
 }
 
 .menu a {
