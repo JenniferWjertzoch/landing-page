@@ -1,16 +1,16 @@
 footer {
     background-color: #333;
     font: bold 0.875rem sans-serif;
-    padding: 3.438rem 3.125rem;
+    padding: 3.438rem 3.125rem; /* Why this weird first number? Maybe rem isn't the right unit here? */
 }
 
 footer a {
-    color: rgba(217,211,199, 0.8);
+    color: rgba(217,211,199, 0.8); /* 0.8 here you can leave the 0 */
 }
 
 footer p {
     color: #d6e0e6;
-    text-align: unset;
+    text-align: unset; /* What does this and why do you need it? */
 }
 
 .footer-left,
@@ -30,7 +30,7 @@ footer p {
 /* Footer links */
 .footer-left a:hover {
     color: #d6e0e6;
-    transition: all 0.3s ease 0s;
+    transition: all 0.3s ease 0s; /* Couldn't you leave the '0s'? */
 }
 
 /* Footer center */
@@ -39,7 +39,7 @@ footer p {
 }
 
 .footer-center-elements a {
-    color: rgba(217,211,199, 0.8);
+    color: rgba(217,211,199, 0.8); /* 0.8 here you can leave the 0 */
 }
 
 .footer-center svg {
@@ -50,7 +50,7 @@ footer p {
 
 /* Footer right */
 .footer-right {
-    margin-top: 1.563rem;
+    margin-top: 1.563rem; /* Again, really weird number 😀 */
 }
 
 .footer-right a {
@@ -60,7 +60,7 @@ footer p {
 }
 
 svg.social-media {
-    background-color:#474747;
+    background-color:#474747; /* space missing */
     border-radius: 8px;
 }
 

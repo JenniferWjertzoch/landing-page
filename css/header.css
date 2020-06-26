@@ -23,9 +23,14 @@ header {
 .menu {
     background-color: #000;
     clear: both;
-    display: none;
     padding: 10px;
     z-index: 1;
+}
+
+@media screen and (max-width: 767px) {
+  .menu.hidden {
+    display: none;
+  }
 }
 
 .menu a {
@@ -36,7 +41,7 @@ header {
 
 .menu a:hover {
     background-color: #707070;
-    transition: all 0.3s ease 0s;
+    transition: all 0.3s ease 0s; /* Couldn't you leave the '0s'? */
 }
 
 .menu a.is-active {
